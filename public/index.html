@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo WhatsApp Cashout Infinito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Efeitos de fundo */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 204, 0, 0.05);
+        }
+        
+        .circle:nth-child(1) {
+            width: 250px;
+            height: 250px;
+            top: -50px;
+            left: -50px;
+        }
+        
+        .circle:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            bottom: -100px;
+            right: -100px;
+            background: rgba(255, 195, 113, 0.05);
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 204, 0, 0.5);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        0 0 20px rgba(255, 204, 0, 0.3),
+                        0 0 40px rgba(255, 195, 113, 0.2);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #ff5f6d, #ffc371, #ffcc00, #ff5f6d);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientShift 8s ease infinite;
+            opacity: 0.2;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #ffcc00 0%, #ffc371 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: #0a0a0a;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 204, 0, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 204, 0, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 204, 0, 0.5); }
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffcc00, #ffc371);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+        
+        .benefits {
+            text-align: left;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .benefit:last-child {
+            margin-bottom: 0;
+        }
+        
+        .benefit i {
+            color: #ffcc00;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.4);
+            margin-top: 10px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(18, 140, 126, 0.6);
+        }
+        
+        .whatsapp-btn:hover::before {
+            left: 100%;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .count {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .count i {
+            margin-right: 8px;
+            color: #ff5f6d;
+        }
+        
+        .testimonial {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .testimonial::before, .testimonial::after {
+            content: '"';
+            font-size: 2rem;
+            color: #ffcc00;
+            position: absolute;
+        }
+        
+        .testimonial::before {
+            top: 5px;
+            left: 10px;
+        }
+        
+        .testimonial::after {
+            bottom: 5px;
+            right: 10px;
+        }
+        
+        .testimonial p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        .testimonial .author {
+            margin-top: 10px;
+            text-align: right;
+            color: #ffcc00;
+            font-style: normal;
+            font-weight: 600;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        
+        /* Animações de partículas */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+                margin: 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .whatsapp-btn {
+                padding: 14px 20px;
+                font-size: 1.1rem;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+    
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-coins"></i>
+        </div>
+        
+        <h1>💰 Sistema Cashout Infinito 💰</h1>
+        
+        <p>Faça mola todos os dias com o melhor sistema do país!</p>
+        
+        <div class="benefits">
+            <div class="benefit">
+                <i class="fas fa-check-circle"></i>
+                <span>Estratégias comprovadas</span>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-check-circle"></i>
+                <span>Suporte 24/7 da comunidade</span>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-check-circle"></i>
+                <span>Actualizações diárias</span>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-check-circle"></i>
+                <span>Resultados consistentes</span>
+            </div>
+        </div>
+        
+        <a href="https://chat.whatsapp.com/EZni2hAzRB59DmDErTn0H7?mode=ac_t" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> Entrar no Grupo WhatsApp
+        </a>
+        
+        <div class="count">
+            <i class="fas fa-users"></i>
+            <span>Mais de 2,500 membros ativos</span>
+        </div>
+        
+        
+        </div>
+    </div>
+    
+    <footer>
+        &copy; 2023 Cashout Infinito - Todos os direitos reservados
+    </footer>
+
+    <script>
+        // Criar partículas animadas
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particlesCount = 20;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho e posição aleatórios
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>
